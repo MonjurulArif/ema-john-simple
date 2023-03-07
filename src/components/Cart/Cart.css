@@ -3,3 +3,9 @@
   top: 0;
   padding: 30px 20px;
 }
+.btn-clear {
+  background-color: #f04242fa;
+}
+.btn-clear:hover {
+  background-color: crimson;
+}

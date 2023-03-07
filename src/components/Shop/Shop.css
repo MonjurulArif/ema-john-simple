@@ -16,3 +16,13 @@
 .cart-container {
   background-color: rgba(255, 153, 0, 0.3);
 }
+button:hover {
+  cursor: pointer;
+}
+.btn-review {
+  margin-left: 20px;
+  background-color: lightseagreen;
+}
+.btn-review:hover {
+  background-color: cyan;
+}

@@ -3,9 +3,10 @@ import "./Cart.css";
 
 const Cart = (props) => {
   // const Cart = ({ cart }) => {
-  const cart = props.cart;
-  console.log(cart);
-  console.log(props.children);
+  const { cart, clearCart, children } = props;
+  // const cart = props.cart;
+  // console.log("Cart:", cart);
+  // console.log(props.children);
   // const total = cart.reduce((total, prd) => total + prd.price, 0);
   //initial value of total is 0
 
@@ -59,9 +60,13 @@ const Cart = (props) => {
       <p>Product Price: ${productPrice()}</p>
       <p>Total Shipping: ${shipping}</p>
       <p>Tax : ${tax}</p>
-      <p>Grand Total: ${formatNumber(grandTotal)}</p>
-      <br />
+      <h5>Grand Total: ${formatNumber(grandTotal)}</h5>
+      <button className="btn-clear" onClick={clearCart}>
+        Clear Cart
+      </button>
       {/* {props.children} */}
+      {/* //Link is children of Cart from Shop: Cart - Link - Cart */}
+      {children}
     </div>
   );
 };

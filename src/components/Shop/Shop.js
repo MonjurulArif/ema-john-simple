@@ -3,22 +3,31 @@ import { NavLink } from "react-bootstrap";
 import Cart from "../Cart/Cart";
 import Product from "../Product/Product";
 import "./Shop.css";
-import { Link } from "react-router-dom";
-import { addToDb, getStoredCart } from "../../utilities/fakedb";
+import { Link, useLoaderData } from "react-router-dom";
+import { addToDb, clearShoppingCart, getStoredCart } from "../../utilities/fakedb";
 
 const Shop = () => {
-  const [products, setProducts] = useState([]);
+  //Products loaded to using router loader in app.js and useLoaderData()
+  const productsLoaded = useLoaderData();
+  //converting to JSON to JavaScript object
+  const products = JSON.parse(productsLoaded);
+  // const products = productsLoaded.json();
+  // console.log("products type: ", typeof products);
+  // console.log(products);
 
-  const first100 = products.slice(0, 100);
+  //products loading here
+  // const [products, setProducts] = useState([]);
+  // const first100 = products.slice(0, 100);
 
-  useEffect(() => {
-    // console.log("Product load before fetch");
-    fetch("https://raw.githubusercontent.com/ProgrammingHero1/ema-john-resources/main/fakeData/products.json")
-      .then((res) => res.json())
-      // .then((data) => console.log(data))
-      .then((responsedData) => setProducts(responsedData)) //assigned to products
-      .catch((error) => alert("Error: ", error));
-  }, []);
+  //Products loaded using router loader in app.js and useLoaderData()
+  // useEffect(() => {
+  //   // console.log("Product load before fetch");
+  //   fetch("https://raw.githubusercontent.com/ProgrammingHero1/ema-john-resources/main/fakeData/products.json")
+  //     .then((res) => res.json())
+  //     // .then((data) => console.log(data))
+  //     .then((responsedData) => setProducts(responsedData)) //assigned to products
+  //     .catch((error) => alert("Error: ", error));
+  // }, []);
 
   // useEffect(() => {
   //   fetch("products.JSON")
@@ -27,6 +36,13 @@ const Shop = () => {
   //     .then((responsedData) => setProducts(responsedData)) //assigned to products
   //     .catch((error) => alert("Error: ", error));
   // }, []);
+
+  const [cart, setCart] = useState([]);
+
+  const clearCart = () => {
+    setCart([]);
+    clearShoppingCart();
+  };
 
   useEffect(() => {
     // console.log("Local Storage fist line", products);
@@ -53,8 +69,6 @@ const Shop = () => {
   //[] dependency injection
   //[products] is called second time when products load
 
-  const [cart, setCart] = useState([]);
-
   const handleAddToCart = (selectedProduct) => {
     // console.log("Product added", product); //when addToCart button clicked
     let newCart = [];
@@ -77,7 +91,7 @@ const Shop = () => {
   return (
     <div className="shop-container">
       <div className="product-container">
-        {first100.map((product) => (
+        {products.map((product) => (
           <Product handleAddToCart={handleAddToCart} key={product.id} product={product}></Product>
         ))}
       </div>
@@ -85,10 +99,14 @@ const Shop = () => {
         {/* <h3>This is Cart</h3>
         <h5>Order Summery: {cart.length}</h5> */}
 
-        <Cart cart={cart}>
+        <Cart cart={cart} clearCart={clearCart}>
           {/* <Link to="/review">
             <button className="main-button">Review Order</button>
           </Link> */}
+          {/* //since Link is inside another componet Cart, hence Link is by default a children */}
+          <Link to="/orders">
+            <button className="btn-review">Review Order</button>
+          </Link>
         </Cart>
       </div>
     </div>
