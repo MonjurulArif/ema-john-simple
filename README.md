@@ -1,1 +1,1 @@
-
+A React based single page e-commerce website for online shopping. Local Storage has been used as a Database. User can pick him/her choosen product to add to cart. Those choosen products and their relative information are saved in local Storage. Producat quantity, price, shipping cost, vat and grand total price are shown in cart. To see his/her added cart product details user can nvigate to Order section which path is set by React Router. From the order section user can remove item if he/she doesn't want to buy. The removed items also removed from the local Storage.
