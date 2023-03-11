@@ -82,6 +82,7 @@ const Shop = () => {
       newCart = [...rest, exists];
     }
 
+    //
     // const newCart = [...cart, selectedProduct];
     setCart(newCart);
 
