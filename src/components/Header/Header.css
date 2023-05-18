@@ -15,6 +15,12 @@ nav a {
   margin-left: 36px;
   /* padding: 5px; */
 }
+
 nav a:hover {
   color: orange;
+}
+
+.btn-logout {
+  margin-left: 10px;
+  border-radius: 4px;
 }

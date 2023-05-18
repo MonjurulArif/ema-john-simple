@@ -61,9 +61,11 @@ const Cart = (props) => {
       <p>Total Shipping: ${shipping}</p>
       <p>Tax : ${tax}</p>
       <h5>Grand Total: ${formatNumber(grandTotal)}</h5>
-      <button className="btn-clear" onClick={clearCart}>
+
+      {/* <button className="btn-clear" onClick={clearCart}>
         Clear Cart
-      </button>
+      </button> */}
+
       {/* {props.children} */}
       {/* //Link is children of Cart from Shop: Cart - Link - Cart */}
       {children}
